@@ -105,7 +105,7 @@ function getApiKey() {
 /* App Module */
 
 var currItem = null;
-var root = '/temp';	
+var root = '/';	
 
 // home
 // home/tags/:tags
