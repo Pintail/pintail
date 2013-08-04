@@ -178,17 +178,17 @@ myApp.run(['$location', '$rootScope', function($location, $rootScope) {
 
 myApp.factory('dataService', function($http, $q) {
     var dataService = {
-		serviceUrl : '/',
+		serviceUrl : 'http://pintail.aws.af.cm/',
 		authenticate : function(apiKey) {
 			var deferred = $q.defer();
-			$http.get('/authenticate/' + apiKey + noCache('?')).then(function(response) {
+			$http.get(dataService.serviceUrl + 'authenticate/' + apiKey + noCache('?')).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;			
 		},
     	searchItems : function(scope, tags, keyword, filter, channelId, page) {
 			var deferred = $q.defer();
-			$http.get('/items?apikey=' + apiKey + 
+			$http.get(dataService.serviceUrl + 'items?apikey=' + apiKey + 
 						    '&page=' + page.toString() + 
 						    '&scope=' + scope.toString() + 
 						    '&tags=' + tags + 
@@ -204,42 +204,42 @@ myApp.factory('dataService', function($http, $q) {
 		},
 		save : function(item) {
 			var deferred = $q.defer();
-			$http.post('/items?apikey=' + apiKey, item).then(function(response) {
+			$http.post(dataService.serviceUrl + 'items?apikey=' + apiKey, item).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;
 		},
 		update : function(item) {
 			var deferred = $q.defer();
-			$http.post('/item/' + item._id + '?apikey=' + apiKey, item).then(function(response) {
+			$http.post(dataService.serviceUrl + 'item/' + item._id + '?apikey=' + apiKey, item).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;
 		},
 		remove : function(item) {
 			var deferred = $q.defer();
-			$http.delete('/item/' + item._id + '?apikey=' + apiKey).then(function(response) {
+			$http.delete(dataService.serviceUrl + 'item/' + item._id + '?apikey=' + apiKey).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;
 		},
 		star : function(item) {
 			var deferred = $q.defer();
-			$http.get('/item/' + item._id + '/star?apikey=' + apiKey).then(function(response) {
+			$http.get(dataService.serviceUrl + 'item/' + item._id + '/star?apikey=' + apiKey).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;
 		},
 		pin : function(item, tags) {
 			var deferred = $q.defer();
-			$http.get('/item/' + item._id + '/pin/private?apikey=' + apiKey + '&tags=' + tags).then(function(response) {
+			$http.get(dataService.serviceUrl + 'item/' + item._id + '/pin/private?apikey=' + apiKey + '&tags=' + tags).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;
 		},		
 		updateProfile : function(user) {
 			var deferred = $q.defer();
-			$http.post('/user?apikey=' + apiKey, user).then(function(response) {
+			$http.post(dataService.serviceUrl + 'user?apikey=' + apiKey, user).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;
@@ -258,28 +258,28 @@ myApp.factory('dataService', function($http, $q) {
 		},
 		getChannel : function(id) {
 			var deferred = $q.defer();	
-			$http.get('/channel/' + id + '?apikey=' + getApiKey()).then(function(response) {
+			$http.get(dataService.serviceUrl + 'channel/' + id + '?apikey=' + getApiKey()).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;			
 		},
 		saveChannel : function(channel) {
 			var deferred = $q.defer();
-			$http.post('/channel?apikey=' + apiKey, channel).then(function(response) {
+			$http.post(dataService.serviceUrl + 'channel?apikey=' + apiKey, channel).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;			
 		},
 		updateChannel : function(channel) {
 			var deferred = $q.defer();
-			$http.post('/channel/' + channel._id + '?apikey=' + apiKey, channel).then(function(response) {
+			$http.post(dataService.serviceUrl + 'channel/' + channel._id + '?apikey=' + apiKey, channel).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;			
 		},
 		follow : function(channel) {
 			var deferred = $q.defer();
-			$http.get('/channel/' + channel._id + '/follow?apikey=' + apiKey, channel).then(function(response) {
+			$http.get(dataService.serviceUrl + 'channel/' + channel._id + '/follow?apikey=' + apiKey, channel).then(function(response) {
 				deferred.resolve(response.data);
 			});
 			return deferred.promise;			
