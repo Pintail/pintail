@@ -1,0 +1,427 @@
+textarea { font-size: 14px; }
+input:focus, textarea:focus {
+    outline-width: 0;
+}
+.titleBtn { color: #999 !important; text-decoration: none; }
+.tagsinput { margin-bottom: 0px; }
+.tagsinput input { width: auto !important; }
+.form-input { margin-bottom: 10px; width: 100%; }
+.form-search { border: 2px solid rgb(224, 227, 230) !important; }
+.inline-header {
+    color: rgb(75, 113, 151);
+    font-family: Lato, sans-serif;
+    text-transform: uppercase;    
+    font-size: 1.2em;
+    font-weight: 400;    
+}
+.ui-helper-hidden-accessible { display: none; }
+
+.yui3-badge, .yui3-badge-error, .yui3-badge-warning, .yui3-badge-success, .yui3-badge-info, .yui3-badge-inverse {
+    padding: 0.35em 0.9em 0.35em;
+    background-color: #1abc9c;
+    color: #fff;
+    display: inline-block;
+    font-size: 11.844px;
+    font-weight: bold;
+    line-height: 1.2em;
+    vertical-align: baseline;
+    white-space: nowrap;
+    border-radius: 4px;
+    margin: 0.2em;
+}
+a.yui3-badge { text-decoration: none; }
+a.yui3-badge:hover { text-decoration: none; color: #fff; background-color: #48c9b0; }
+a.yui3-badge:visited { color: #fff; }
+.yui3-badge-info { background-color: rgb(18, 169, 218); }
+.yui3-badge-success { background-color: #1abc9c; }
+.yui3-badge-counter { background-color: #999; }
+.yui3-badge.badge-compressed { padding: 0.25em 0.4em 0.25em; font-size: 80%; }
+
+#showTags { cursor: pointer; }
+#main-wrapper { margin-left: 50px; }
+
+#scrollUp {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background: #555;
+    color: #fff;
+    text-decoration: none;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;    
+}
+
+#filter-type-list {
+    display: table;
+    width: 100%;
+    padding-left: 0px;
+    border: 2px solid #1abc9c;
+    border-radius: 6px;
+    padding: 6px 1px 1px 6px; padding-bottom: 8px;    
+}
+#filter-type-list li {
+    display: table-cell;
+    text-align: center;
+}
+
+#form {  
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 20px; 
+    margin-bottom: 20px;    
+}
+#form-search {  
+	/*
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;   
+    */ 
+}
+#list { 
+	width: 100%; 
+	-webkit-tap-highlight-color:transparent;
+}
+.dataview { color: #ccc; font-size: 80%; float: right; margin-top: -20px; }
+
+ul.ui-autocomplete {
+    background: white;
+    border: 2px solid #1abc9c;
+    border-radius: 6px;
+    padding: 6px 6px 6px 6px;    
+    max-width: 140px;
+}
+ul.ui-autocomplete li {
+    width: 100%; 
+    list-style-type:none; 
+    display:inline-block;
+}
+ul.ui-autocomplete li a {
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 4px;
+    display: block; 
+    text-decoration: none;
+    cursor: pointer;
+}
+ul.ui-autocomplete li a:hover {
+    color: white;
+    background-color: #1abc9c;
+    border: 1px solid transparent;
+}
+
+/* Custom scroll bars */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #ffffff;
+    -webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 6px;
+    background-color: #666;
+    -webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    width: 6px;
+    background-color: #666;
+    -webkit-border-radius: 6px;
+}
+
+/* Vertical Navigation Styles */
+
+#menu { overflow-y: auto; background-color: black; }
+#menu .pure-menu-heading:hover { background-color: inherit; }
+#menuBg {
+    position: fixed;
+    left: 0;
+    display: block;    
+    background: rgb(29, 28, 28);
+    width: 48px;
+    height: 100%;
+    z-index: -1;
+}
+.pure-menu-link { 
+    padding: 0.90em 1em !important; 
+    background: #191818 !important;
+    text-decoration: none;
+}
+.pure-menu-link:hover {
+    background: rgb(46, 44, 44) !important;
+}
+.menu-tags { 
+    margin-top: 40px;
+    height: 50px;
+}
+.menu-teams { 
+    margin-top: 90px;
+    height: 50px;
+}
+.menu-profile { 
+    margin-top: 140px;
+}
+.menu-tags i, .menu-teams i, .menu-profile i {
+    font-size: 22px;
+    color: #fff;
+}
+.horiz-group {  
+	display: block;
+	position: fixed;
+	background-color: rgb(46, 44, 44);
+	width: 150px;
+	margin-top: 90px;
+	margin-left: 50px;
+}
+.horiz-group a {
+    float: left;
+    padding: 12px;
+    padding-bottom: 13px;
+    padding-left: 18px;
+    text-decoration: none;
+}
+.horiz-group a i { font-size: 22px; color: #fff; }
+
+.nav {  background: rgb(37, 42, 58); }
+.nav .pure-menu {
+    background: transparent;
+    border: none;
+    text-align: left;
+    margin-top: -10px;
+}
+    .nav .pure-menu a:hover {
+        background: rgb(55, 60, 90);
+    }
+    .nav .pure-menu a {
+        color: #fff;
+        margin-left: 0.5em;
+    }
+    .nav .pure-menu-heading {
+        border-bottom: none;
+        font-size:110%;
+        color: rgb(75, 113, 151) !important;
+    }
+
+    .nav .nav-menu-button {
+        display: none;
+    }
+
+    .email-count {
+        color: rgb(75, 113, 151);
+    }
+
+    .email-label-personal,
+    .email-label-work,
+    .email-label-travel {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        margin-right: 0.5em;
+        border-radius: 3px;
+    }
+    .email-label-personal {
+        background: #ffc94c;
+    }
+    .email-label-work {
+        background: #0077cc;
+    }
+    .email-label-travel {
+        background: #40c365;
+    }
+
+/* Email Item Styles */
+
+.email-item {
+    padding: 0.9em 1em;
+    border-bottom: 1px solid #ddd;
+    border-left: 6px solid transparent;
+}
+    .email-avatar {
+        border-radius: 3px;
+        margin-right: 1em;
+        max-width: 58px !important;
+        cursor: pointer;
+    }
+    .email-name, .email-subject {
+        margin: 0;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;        
+    }
+
+    .email-name {
+        text-transform: uppercase;
+        font-size: .83em;
+        color: #999;
+    }
+    .email-name a { text-decoration: none; }
+    
+    .email-subject {
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .email-desc, .email-desc p {
+        margin: 0.4em 0;
+        font-size: 95% !important;
+        line-height: 1.6em !important;
+    }
+    .email-desc ul { padding: 0 0 0 20px; }
+    
+    .email-content {
+    	border: 1px solid #ccc; 
+		float: left;
+		padding: 4px;    	
+    }
+    .email-content .content {
+    	border-bottom: 1px solid #ccc;
+    	padding-bottom: 2px;
+    }
+    .email-content .toggle {	 
+    	margin-top: 4px;
+    }
+
+.email-item-selected { background: #eee; }
+.email-item-unread { border-left: 6px solid #02a3c6; }
+.email-item-starred { border-left: 6px solid #40c365; }
+.email-item-pinned { border-left: 6px solid #0077cc; }
+
+/* Email Content Styles */
+
+    .email-content-header {
+        border-bottom: 1px solid #ddd;
+    }
+
+        .email-content-title {
+            margin: 0.5em 0 0;
+        }
+        .email-content-subtitle {
+            margin: 0;
+            font-weight: normal;
+        }
+            .email-content-subtitle span {
+                color: #999;
+            }
+    .email-content-controls {
+        margin-top: 2em;
+        text-align: right;
+    }
+        .email-content-controls .secondary-button {
+            margin-bottom: 0.3em;
+        }
+
+
+.youtube {
+	background-color: #000;
+	max-width: 100%;	
+	overflow: hidden;
+	position: relative;
+	cursor: hand;
+	cursor: pointer;
+}
+.youtube .thumb {
+	bottom: 0;
+	display: block;
+	left: 0;
+	margin: auto;
+	max-width: 100%;
+	right: 0;
+	top: 0;
+	width: 100%;
+	height: auto;
+}
+.youtube .circle {
+	filter: alpha(opacity=80);
+	opacity: .8;
+	height: 77px;
+	left: 50%;
+	top: 50%;
+	margin-left: -38px;
+	margin-top: -38px;	
+	position: absolute;
+	width: 77px;
+	background: url("/public/video-play.png") no-repeat;
+}
+
+/* Channel Header Styles */
+
+.public-channel-dashboard { padding-top: 30px; }
+.public-channel-dashboard a.dashboard-option { text-decoration: none; padding-bottom: 6px; margin-right: 10px; }
+.public-channel-dashboard a.dashboard-option.selected { border-bottom: 1px solid #999; }
+.public-channel-dashboard i { font-size: 26px; line-height: 60px; color: #aaa; }
+.public-channel-dashboard .yui3-badge { margin-left: -4px; margin-right: 20px; background-color: #777; }
+.public-channel-dashboard .public-channel-dashboard-content { padding-top: 14px; }
+.public-channel-dashboard .public-channel-dashboard-content a { color: #999; text-decoration: none; margin-right: 16px; }
+
+@media (min-width: 868px) {
+    #menuBg { 
+		width: 150px;
+		background-color: black;    	
+    }
+    .pure-menu-link { display: block; position: fixed; width: 24px; }
+    .ieFix1 { width: 85%; }
+}
+
+@media (max-width: 867px) {
+	#layout.active .pure-menu-link { width: 22px; }
+    #list {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .menu-teams { width: 20px; }
+    .horiz-group { margin-left: 48px }
+    .horiz-group.active { margin-left: 200px }
+}
+
+@media (max-width: 480px) {
+	#layout.active .pure-menu-link { width: 22px; }
+    #layout, #nav, #list, #main {
+        position: static;
+        margin: 0;
+        padding: 0;
+    }
+    #nav {
+        width: 100%;
+        height: 40px;
+        position: relative;
+    }
+    #nav .nav-menu-button {
+        display: block;
+        top: 0.5em;
+        right: 0.5em;
+        position: absolute;
+    }
+    #nav.active {
+        height: 80%;
+    }
+    .nav-inner {
+        display: none;
+    }
+    #nav.active .nav-inner {
+        display: block;
+    }
+    .email-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    .menu-teams { width: 20px; }
+    .horiz-group { margin-left: 48px } 
+    .horiz-group.active { margin-left: 200px }
+}
+
+/* Zoom for mobile devices */
+@media screen and (max-width:767px) {
+    @-ms-viewport{
+        width:360px;
+    }
+    .ieFix1 { width: 70% !important; }
+}
+

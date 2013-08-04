@@ -1,71 +1,365 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Pintail by Pintail!</title>
+<!DOCTYPE html>
+<html ng-app="pintail">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Pintail</h1>
-        <p>Pintail Site</p>
+	<head>
+		<title ng-bind="'pintail &mdash; ' + title">Pintail</title>
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="cleartype" content="on" />        
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">	
+        
+		<meta name="application-name" content="Pintail"/> 
+		<meta name="msapplication-TileColor" content="#ffffff"/>
+		<meta name="msapplication-TileImage" content="/public/arrow-144-xxl.png"/>        
+        
+	    <link rel="stylesheet" href="/temp/required.css">
+	    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	    <!-- <link href="/public/css/font-awesome.css" rel="stylesheet"> -->
+	    <link href="/public/css/themes/jackedup.css" rel="stylesheet">	    
+	    <link rel="stylesheet" href="/temp/style.css?v=9">
+	    
+	    <script>
+	    	var apiKey = '';
 
-        <p class="view"><a href="https://github.com/Pintail/Pintail">View the Project on GitHub <small>Pintail/Pintail</small></a></p>
+			function isString(o) {
+			    return typeof o == "string" || (typeof o == "object" && o.constructor === String);
+			}
 
+			function getCookie(c_name) {
+			    if (document.cookie.length > 0) {
+			        c_start = document.cookie.indexOf(c_name + "=");
+			        if (c_start != -1) {
+			            c_start = c_start + c_name.length + 1;
+			            c_end = document.cookie.indexOf(";", c_start);
+			            if (c_end == -1) {
+			                c_end = document.cookie.length;
+			            }
+			            return unescape(document.cookie.substring(c_start, c_end));
+			        }
+			    }
+			    return undefined;
+			}
+			
+			function deleteCookie(c_name) {
+			    document.cookie = c_name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+			}		
+	    	
+	        Array.prototype.remove = function(){
+	            var what, a= arguments, L= a.length, ax;
+	            while(L && this.length){
+	                what= a[--L];
+	                while((ax= this.indexOf(what))!= -1){
+	                    this.splice(ax, 1);
+	                }
+	            }
+	            return this;
+	        }   
+			Array.prototype.findByKey = function() {
+				var key = arguments[0], value = arguments[1];
+			    for (var i = 0; i < this.length; i++) {
+			        if (this[i][key] === value) {
+			            return this[i];
+			        }
+			    }
+			    return null;
+			}	        
+	              
+			function showAlert(msg, type) {
+			    // type: info, error, success
+			    if (type == undefined)
+			        type = 'info';
+			    var jacked = humane.create({ baseCls: 'humane-jackedup', addnCls: 'humane-jackedup-' + type, timeout: 2000, waitForMove: true })
+			    jacked.log(msg)
+			}      		
+			       
+	    </script>
 
-        <ul>
-          <li><a href="https://github.com/Pintail/Pintail/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/Pintail/Pintail/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/Pintail/Pintail">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+		<script src="/temp/angular.min.js?v=9"></script>
+		<!--
+	    <script src="/temp/jquery.min.js?v=9"></script>
+	    <script src="/temp/jquery-ui.custom.min.js?v=9"></script>	    
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+	    <script src="/temp/ngSanitize.js?v=9"></script>
+	    <script src="/temp/ngResource.js?v=9"></script>
+	    <script src="/temp/ngCookies.js?v=9"></script>	
+	    <script src="/temp/ng-infinite-scroll.js?v=9"></script>	    
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+	    <script src="/temp/Rainbow.js?v=9"></script>
+	    <script src="/temp/jqueryExpandable.js?v=9"></script>
+	    <script src="/temp/jqueryTagsInput.js?v=9"></script>
+	    <script src="/temp/jquery.shorten.js?v=9"></script>
+	    <script src="/temp/jquery.scrollUp.js?v=9"></script>
+	    <script src="/public/js/humane.js?v=9"></script>	    
+	    <script src="/temp/showdown.js?v=9"></script>
+	    -->
+	    <script src="/public/js/pintail-min.js"></script>
+	    
+	    <script src="/temp/app.js?v=9"></script>
+	    <script src="/temp/script.js?v=9"></script>	    
+	</head>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/Pintail">Pintail</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+  <body ng-controller="Controller">
+    <div class="pure-g-r " id="layout">
+        <a href="#menu" id="menuLink" class="pure-menu-link">
+            <img src="/public/navicon-png2x.png" width="20" alt="Menu toggle">
+        </a>
+        <a href="#" class="pure-menu-link menu-tags">
+            <i class="icon-tags"></i>
+        </a>
+        <a href="#" class="pure-menu-link menu-teams">
+            <i id="scopeIcon" class="icon-user"></i>
+        </a>    
+            <div id="scopeGroup" class="horiz-group" style="display: none;">
+                <a href="#/home"><i class="icon-user" title="Personal items"></i></a>
+                <a href="#/public"><i class="icon-globe" title="Publically shared"></i></a>
+                <a href="#/teams"><i class="icon-group" title="Teams"></i></a>           
+            </div> 
+        <a href="#/account" class="pure-menu-link menu-profile">
+            <i class="icon-user-md"></i>
+        </a>            
+        <div id="menuBg"></div>
+        
+<div class="pure-u nav" id="menu">
+    <div class="pure-menu pure-menu-open">
+        <a class="pure-menu-heading" href="#/">Pintail</a>
+<ul>
+                    <li class="pure-menu-heading">Order</li>
+                    <li><a href="#" ng-click="filterBy('all')">All</a></li>
+                    <li><a href="#" ng-click="filterBy('starred')"><span class="email-label-travel"></span>Starred</a></li> 
+                    <li><a href="#" ng-click="filterBy('pinned')"><span class="email-label-work"></span>Pinned</a></li> 
+                    <li id="showTags" class="pure-menu-heading">My Tags</li>
+                    <li ng-repeat="tag in user.tags" ng-cloak><a href="#" ng-click="addTag(tag)">{{tag}}</a></li>              
+                    <li class="pure-menu-heading">Show</li>
+                    <li><a href="#" ng-click="filterBy('all')">All types</a></li>
+                    <li><a href="#" ng-click="filterBy('webpage')">Web pages</a></li>
+                    <li><a href="#" ng-click="filterBy('note')">Notes</a></li>        
+                    <li><a href="#" ng-click="filterBy('image')">Images</a></li>     
+                    <li><a href="#" ng-click="filterBy('document')">Documents</a></li>       
+                    <li><a href="#" ng-click="filterBy('media')">Media</a></li>            
+                </ul>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+</div>
+
+
+<div class="pure-u" id="main">
+<div id="main-wrapper">
+  
+	<!-- Views -->
+    <script type=text/ng-template id=welcome.html>
+	  <div class="header pure-u-1" style="margin-bottom: 20px;">
+	    <h1 class="pure-u-1">Bookmarking</h1>
+	    <h2 class="pure-u">Never loose a link, ever again.</h2>
+	    
+	    <div ng-cloak>
+	    	<br/><br/>
+	    	<a href="/auth/twitter"><img src="/public/signin-twitter.png" alt="Sign in with Twitter" /></a>
+	    	<a href="/auth/facebook"><img src="/public/signin-facebook.png" alt="Sign in with Facebook" /></a>
+	    </div>
+	  </div>    
+    </script>		
+    <script type=text/ng-template id=home.html>
+	  <div class="header pure-u-1" style="margin-bottom: 20px;">
+	    <h1 class="pure-u-1">Your bookmarks</h1>
+	    <h2 class="pure-u">Manage your personal collection.</h2>
+	  </div>    
+    </script>	
+    <script type=text/ng-template id=public.html>
+	  <div class="header pure-u-1" style="margin-bottom: 20px;">
+	    <h1 class="pure-u-1" ng-bind="title"></h1>
+	    <h2 class="pure-u" ng-bind-html-unsafe="parseDescription(channel)"></h2>
+	    <div class="content public-channel-dashboard" style="display: none; margin-bottom: 0px; position: relative;" ng-show="channel">
+
+	    	<a href="#" class="dashboard-option">followers (<span ng-bind="channel.followers.length"></span>)</a> 
+	    	<a href="#" class="dashboard-option selected">tags (<span ng-bind="channel.tags.length"></span>)</a> 
+	    	<a href="#" class="dashboard-option">authors (<span ng-bind="channel.authors.length"></span>)</a>  
+	    	<a href="#" class="dashboard-option" ng-click="follow(channel, $event)" ng-bind="permissions.isFollower && 'unfollow' || 'follow'"></a>
+	    	<span ng-show="permissions.isOwner" style="position: absolute; right: 0px;">
+	    		<a class="dashboard-option" href="#" style="float: right;">delete</a>
+	    		<a class="dashboard-option" ng-href="#/public/channels/edit/{{channel._id}}" style="float: right; margin-right: 10px;">edit</a>
+	    	</span>	    	
+	    	
+	    	<div class="public-channel-dashboard-content"> 
+	    		<a ng-repeat="tag in channel.tags" ng-href="#">{{tag}}</a>
+	    	</div>
+	    	
+	    </div>	  
+	  </div>    
+    </script>  
+    <script type=text/ng-template id=publicChannels.html>
+	  <div class="header pure-u-1" style="margin-bottom: 20px;">
+	    <h1 class="pure-u-1" ng-bind="title"></h1>
+	    <h2 class="pure-u">Following <a href="#/public/channels/following" class="titleBtn">{{user.following}}</a> channels. <a href="#/public/channels/all" class="titleBtn">Discover</a> more, or <a href="#/public/channels/me" class="titleBtn">add one</a>.</h2>
+	  </div>  
+	  
+	  <div class="content">    
+		  <form id="form-public-channel" name="formPublicChannel" ng-show="show == 'me' || show == 'edit'" style="border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px;">
+	  		<h3 class="pure-u inline-header">Title</h3><br/>
+	  		<input ng-model="channel.title" id="form-public-channel-title" type="text" class="form-input" required>  
+	  		<div id="form-sub-channel" style="display: none;">
+			  	<h3 class="pure-u inline-header">Short description</h3><br/>
+	 			<input ng-model="channel.description" id="form-public-channel-description" type="text" class="form-input" required>  
+			  	<h3 class="pure-u inline-header">Thumbnail URL</h3><br/>
+	 			<input ng-model="channel.avatarUrl" id="form-public-channel-avatarUrl" type="text" class="form-input" required>  	 			
+			  	<h3 class="pure-u inline-header">Filter by tags</h3><br/>
+			  	<input id="form-public-channel-tags" class="tagsinput form-public-channel-tags" style="display: none;">   	
+			  	<h3 class="pure-u inline-header" style="margin-top: 12px;">Filter by authors</h3><br/>
+			  	<input id="form-public-channel-authors" class="tagsinput form-public-channel-authors" style="display: none;">   		  			
+			  	<br/>
+		  	</div>
+		  	<button id="form-public-channel-btn" class="btn btn-primary" style="width: 100%;" ng-disabled="formPublicChannel.$invalid" ng-click="save()">Save</button>      
+		  </form>  	  
+
+		<span ng-show="show != 'edit'">
+    	<h3 class="inline-header" ng-cloak ng-bind="channels.length == 0 && 'Loading...' || 'Showing ' + channels.length + ' channels'"></h3>
+    	<input id="filter-channel-taglist" class="tagsinput" style="display: none;">	  
+        <div id="list-public-channels" infinite-scroll='search(true)' infinite-scroll-disabled='busy' infinite-scroll-distance='1' style="margin-top: 10px;">
+            <div ng-repeat="item in channels" ng-cloak class="email-item pure-g" data-id="{{item._id}}">          
+                <div class="pure-u">
+                    <img class="email-avatar" alt="Web page" src="{{item.avatarUrl}}">
+                </div>
+
+                <div class="pure-u-3-4 ieFix1">
+                    <h5 class="email-name"><a ng-repeat="tag in item.tags" href="#/public" ng-click="addChannelTag(tag, $event)">{{tag}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></h5>
+                    <h4 class="email-subject" ng-bind="item.title"></h4>
+                    <span class="email-desc">
+                    	<span ng-bind-html-unsafe="item.description"></span>
+                    </span>   
+                </div>
+            </div>
+            <div ng-show='busy'>Loading data...</div>
+            <div ng-show='!busy && channels.length == 0'>No channels to display.</div>
+		</div>  
+		</span>
+		
+	  </div>
+    </script>        
+    <script type=text/ng-template id=signin.html>
+    </script>
+    <script type=text/ng-template id=signout.html>
+    </script>    
+    <script type=text/ng-template id=account.html>
+	  <div class="header pure-u-1" style="margin-bottom: 20px;">
+	    <h1 class="pure-u-1">Hi {{userDisplayName}},</h1>
+	    <h2 class="pure-u">Manage your profile here.</h2>
+	  </div>  
+	  
+	  <div class="content">
+	  	<form id="form-user" name="formUser">
+	  		<h3 class="pure-u inline-header">Your name</h3><br/>
+	  		<input ng-model="user.displayName" id="form-user-displayName" type="text" class="form-input" required>  
+	  		<h3 class="pure-u inline-header">Username</h3><br/>
+	  		<input ng-model="user.username" id="form-user-username" type="text" class="form-input" required>  	  		
+		  	<h3 class="pure-u inline-header">Your favorite tags</h3><br/>
+		  	<input ng-model="user.tags" id="form-user-tags" class="tagsinput form-user-tags" style="display: none;">    
+		  	<br/>
+		  	<button id="form-user-btn" class="btn btn-primary" style="width: 100%;" ng-disabled="formUser.$invalid" ng-click="save()">Update</button>   
+	  	</form>
+	  </div>
+    </script>             
+    <div ng-view></div>  
+  
+  <form id="form" name="form" class="content"  ng-cloak ng-show="apiKey != '' && showStream()">
+    <h3 class="pure-u inline-header" ng-click="reset()" style="cursor: pointer;">Add a link or note</h3><br/>
+    <input ng-model="item.link" id="form-url" type="text" value="" placeholder="http:// or your note's subject" class="form-input" required></input>
+    <div id="form-sub">
+    	<input ng-model="item.subject" ng-show="subjectLoaded" id="form-subject" placeholder="Link title" type="text" class="form-input">   
+        <input ng-model="item.tags" id="form-tags" class="tagsinput" style="display: none;">     
+        <textarea ng-model="item.comment" id="form-comments" class="form-input" placeholder="Comments (supports markdown)..." style="margin-top: 10px;"></textarea></br>   
+    </div>
+    <button class="btn btn-primary" style="width: 100%;" ng-disabled="form.$invalid" ng-click="save()" ng-bind="item._id == undefined && 'Add this' || 'Update this'"></button>    
+  </form>
+  
+  <!-- Markdown info: http://softwaremaniacs.org/playground/showdown-highlight/  -->
+  
+  <div id="filter-tags" class="content" style="display: none; margin-bottom: 30px;">
+    <h3 class="pure-u inline-header">Filter by hashtags</h3><br/>
+    <input id="filter-taglist" class="tagsinput" style="display: none;">
+  </div> 
+  
+  <div class="content" ng-cloak ng-show="showStream()">
+    <h3 class="inline-header" ng-cloak ng-bind="items.length == 0 && 'Loading...' || 'Showing ' + items.length + ' items'"></h3>
+    <span class="dataview" ng-bind-html-unsafe="getDataView()"></span>
+    <input id="form-search" ng-model="query" ng-change="search()" type="text" value="" placeholder="Search..." class="form-input form-search"></input>  
+    <div class="pure-u" id="list">
+        
+        <div infinite-scroll='search(true)' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
+            <div ng-repeat="item in items" ng-cloak class="email-item {{getFlagClasses(item)}} pure-g">
+                <div class="pure-u-1 ctrlbar" style="padding-bottom: 8px; display: none;">
+                    <div style="margin-left: 67px;">
+                        <a ng-href="{{item.link}}" title="Launch this link in a new window" ng-show="item.type != 'note'" target="_blank" class="yui3-badge">Visit</a>
+                        <a href="#" class="yui3-badge" title="{{item.isStarred}}"><i class="icon-star" ng-click="star(item)"></i></a>
+                        <a href="#" class="yui3-badge" title="{{item.isPinned}}" ng-show="tags.length > 0"><i class="icon-pushpin" ng-click="pin(item)"></i></a>
+                        <a href="#" class="yui3-badge" style="float: right" ng-show="user._id == item.userId" ng-click="remove(item)"><i class="icon-remove"></i></a>   
+                        <a href="#" class="yui3-badge" style="float: right" ng-show="user._id == item.userId" ng-click="edit(item, $event)"><i class="icon-pencil"></i></a>    
+                    </div>
+                </div>
+                <div class="pure-u" ng-switch on="item.type">
+                    <img class="email-avatar" ng-switch-when="webpage" alt="Web page" src="/public/icons/cloud-download.png">
+                    <img class="email-avatar" ng-switch-when="note" alt="Note" src="/public/icons/icon-note.png">
+                    <img class="email-avatar" ng-switch-when="image" alt="Note" src="/public/icons/camera.png">
+                    <img class="email-avatar" ng-switch-when="document" alt="Document" src="/public/icons/icon-doc.png">
+                    <img class="email-avatar" ng-switch-when="media" alt="Media (audio/video)" src="/public/icons/video-play.png">
+                    <img class="email-avatar" ng-switch-when="task" alt="Task" src="/public/icons/icon-task.png">
+                </div>
+
+                <div class="pure-u-3-4 ieFix1">
+                    <h5 class="email-name"><a ng-repeat="tag in item.tags" href="#" ng-click="addTag(tag, $event)">{{tag}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></h5>
+                    <h4 class="email-subject" ng-bind="(item.type == 'webpage' && item.subject == '') && item.link || item.subject"></h4>
+                    <span class="email-desc">
+                    	<span ng-bind-html-unsafe="parseComment(item)"></span>
+                    </span>
+                    <span class="email-content" ng-show="parseContent(item)">
+                    	<span class="content" ng-bind-html-unsafe="parseContent(item)" style="display: none;"></span>
+                    	<div class="toggle" data-type="{{item.type}}" data-state="hidden"><a href="#">Show {{item.type}}</a></div>
+                    </span>
+                                        
+                </div>
+            </div>
+            <div ng-show='busy'>Loading data...</div>
+          </div>  
+            
+            
+    </div>
+  </div>
+ 
+  <span><a href="#/account">{{user.providerUsername}}</a> <a href="#/signout" ng-cloak ng-show="apiKey != ''">Sign out</a></span>
+ 
+</div> 
+</div>
+
+<script>
+	var menu = document.getElementById('menu'),
+	    menuLink = document.getElementById('menuLink'),
+	    scopeGroup = document.getElementById('scopeGroup'),
+	    layout = document.getElementById('layout'),
+	
+	    toggleClass = function (element, className) {
+	        var classes = element.className.split(/\s+/),
+	            length = classes.length,
+	            i = 0;
+	
+	        for(; i < length; i++) {
+	          if (classes[i] === className) {
+	            classes.splice(i, 1);
+	            break;
+	          }
+	        }
+	        // The className is not found
+	        if (length === classes.length) {
+	            classes.push(className);
+	        }
+	
+	        element.className = classes.join(' ');
+	    };
+	
+	    menuLink.onclick = function (e) {
+	        e.preventDefault();
+	        var active = 'active';
+	        toggleClass(layout, active);
+	        toggleClass(scopeGroup, active);
+	        toggleClass(menu, active);
+	    };	
+</script>
+
   </body>
+
 </html>
